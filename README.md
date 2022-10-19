@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 Run the script ```fetch_spacex_launch_images.py``` with the command:
 ```bach
-$ python fetch_spacex_launch_images.py {id}.
+```$ python fetch_spacex_launch_images.py {id}```
 'Where id - is the flight_number of the launch of interest'
 ```
 Run the script ```fetch_nasa_epic_picture.py``` with the command:
