@@ -24,25 +24,24 @@ pip install -r requirements.txt
 
 Run the script ```fetch_spacex_launch_images.py``` with the command:
 ```bach
-```$ python fetch_spacex_launch_images.py {id}```
+$ python fetch_spacex_launch_images.py {id}
 'Where id - is the flight_number of the launch of interest'
 ```
 Run the script ```fetch_nasa_epic_picture.py``` with the command:
 ```bach
-$ python fetch_nasa_epic_picture.py -d(--date) {YYYY-mm-dd}. '
+$ python fetch_nasa_epic_picture.py -d(--date) {YYYY-mm-dd}
 'Where YYYY-mm-dd - is the start date for the download epic image day from NASA. '
 'if you do not enter -s(--start_date), then default = today'
 ```
 Run the script ```fetch_nasa_astronomy_image_day.py``` with the command:
 ```bach
-'$ python fetch_nasa_astronomy_image_day.py -s(--start_date) {YYYY-mm-dd}. '
+$ python fetch_nasa_astronomy_image_day.py -s(--start_date) {YYYY-mm-dd}
 'Where YYYY-mm-dd - is the start date for the download astronomy image day from NASA. '
 'if you do not enter -s(--start_date), then default = today'
 ```
 Run the script ```images_nasa_telegram_bot.py``` with the command:
 ```bach
-'$ python images_nasa_telegram_bot.py -t(--time) '
-'{value in seconds(at least 15 seconds)}. '
+$ python images_nasa_telegram_bot.py -t(--time) {value in seconds(at least 15 seconds)}
 'Where {value in seconds} this is the value in seconds of the frequency '
 'of sending images to the channel by the bot'
 ' If you do not enter, then the default value is 14400 seconds(4 hours) '
@@ -51,6 +50,7 @@ Run the script ```images_nasa_telegram_bot.py``` with the command:
 ### How the program works:
 
 The program consists of 4 scripts:
+
 ```fetch_spacex_launch_images.py``` - 'The program downloads photos of Spacex launches by launch number (id).'
 ```fetch_nasa_epic_picture.py``` - 'The program downloads an epic image of the Earth of the day from a NASA server.'
 ```fetch_nasa_astronomy_image_day.py``` -  'The program downloads astronomical images of the day from the NASA server.'
