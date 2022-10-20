@@ -57,7 +57,7 @@ For example:
 'TELEGRAM_BOT_TOKEN'='78536960203:nYNc41OAe..........'
 'TELEGRAM_CHAT_ID'='@dvmn_flood'
 
-To use all of the above environment variables in programs, use the `load_dotenv()` method.
+To use all of the above environment variables in programs, use the `load_dotenv()` module.
 
 ### How to run the program:
 
