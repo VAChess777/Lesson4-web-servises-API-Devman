@@ -20,6 +20,45 @@ Use `pip` (or `pip3`, if there is a conflict with Python2) to install dependenci
 pip install -r requirements.txt
 ```
 
+### About environment variables:
+
+For the program to work, you will need `API tokens`, which you will then place in the 
+environment variables.  The values of which you will put in the `.env` file.
+
+For the work of the program `fetch_nasa_epic_picture.py`, you will need an `API token` from the resource
+by the link [https://api.nasa.gov/#epic](https://api.nasa.gov/#epic). 
+
+When you receive the token, put its value in the `.env` file.
+For example: 'NASA_API_KEY_EPIC'='zwtGhK6qmLM...........'.
+
+Then put this value in an environment variable in the program.
+For example: nasa_api_key_epic = os.environ['NASA_API_KEY_EPIC']
+
+For the work of the program `fetch_nasa_astronomy_image_day.py`, you will need an `API token` from the resource
+by the link [https://api.nasa.gov/](https://api.nasa.gov/)
+
+When you receive the token, put its value in the `.env` file.
+For example: 'NASA_API_KEY'='zwtGhK6qmLM...........'.
+
+Then put this value in an environment variable in the program.
+For example: nasa_api_key_epic = os.environ['NASA_API_KEY']
+
+For the work of the program `fetch_nasa_astronomy_image_day.py`, you will need an `API token` from `@botfather`
+bot in `telegram`. You will need to open your telegram channel and get the `Chat ID` of this channel.
+The `Chat ID` of the channel is a link to it, for example: `@dvmn_flood`.
+
+When you receive the token, put its value in the `.env` file.
+For example: 'TELEGRAM_BOT_TOKEN'='zwtGhK6qmLM...........'.
+And put the value `Chat ID` in the `.env` file.
+For example: 'TELEGRAM_CHAT_ID'=`@dvmn_flood`
+
+Then put this value in an environment variables in the program.
+For example: 
+'TELEGRAM_BOT_TOKEN'='78536960203:nYNc41OAe..........'
+'TELEGRAM_CHAT_ID'='@dvmn_flood'
+
+To use all of the above environment variables in programs, use the `load_dotenv()` method.
+
 ### How to run the program:
 
 Run the script ```fetch_spacex_launch_images.py``` with the command:
