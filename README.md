@@ -1,6 +1,6 @@
 # Space Telegram
 
-The program downloads photos on specified dates from the resources of Spacex and Nasa and then publishes them in the telegram channel
+The program downloads photos on specified dates from the resources of Spacex and Nasa, and then publishes them in the telegram channel.
 
 ### Software environment and installation:
 
@@ -54,38 +54,38 @@ The program consists of 4 scripts:
 ```fetch_spacex_launch_images.py``` - 'The program downloads photos of Spacex launches by launch number (id).'
 ```fetch_nasa_epic_picture.py``` - 'The program downloads an epic image of the Earth of the day from a NASA server.'
 ```fetch_nasa_astronomy_image_day.py``` -  'The program downloads astronomical images of the day from the NASA server.'
-```images_nasa_telegram_bot.py``` - 'The program edits the images to the required size and sends the images to the telegram channel'
+```images_nasa_telegram_bot.py``` - 'The program edits the images to the required size and sends the images to the telegram channel.'
             
 
 ### Features works of the program:
 
 The `fetch_spacex_launch_images.py` program contains the functions:
 
-* The `picture_latest_launch` function - checks and downloads photos from the last launch from the SpaceX server
-* The `spacex_id_launch_picture` function - checks and downloads photos from the SpaceX server for the date
-* The `create_parser` function - parser function
-* The `def main():` main function
+* The `picture_latest_launch` function - checks and downloads photos from the last launch from the SpaceX server.
+* The `spacex_id_launch_picture` function - checks and downloads photos from the SpaceX server for the date.
+* The `create_parser` function - parser function.
+* The `def main():` main function.
 
 The `fetch_nasa_epic_picture.py` program contains the functions:
 
-* The `nasa_epic_picture_number` function - gets the numbers of the required pictures from the server response
-* The `nasa_epic_picture_urls` function - based on the numbers of the pictures gets the necessary links to the photos
-* The `nasa_epic_picture_downloads` function - a function that immediately downloads pictures from the NASA server
-* The `create_parser` function - parser function
-* The `def main():` main function
+* The `nasa_epic_picture_number` function - gets the numbers of the required pictures from the server response.
+* The `nasa_epic_picture_urls` function - based on the numbers of the pictures gets the necessary links to the photos.
+* The `nasa_epic_picture_downloads` function - a function that immediately downloads pictures from the NASA server.
+* The `create_parser` function - parser function.
+* The `def main():` main function.
 
 The `fetch_nasa_astronomy_image_day.py` program contains the functions:
 
-* The `nasa_astronomy_picture_day` function - downloads images from the NASA server on dates of interest
-* The `create_parser` function - parser function
-* The `def main():` main function
+* The `nasa_astronomy_picture_day` function - downloads images from the NASA server on dates of interest.
+* The `create_parser` function - parser function.
+* The `def main():` main function.
 
 The `images_nasa_telegram_bot.py` program contains the functions:
 
-* The `all_photos` function - gets all downloaded images from directories using the above scripts
-* The `size_images_for_telegram` function - changes the size of the images to suitable for placement in the telegram
-* The `create_parser` function - parser function
-* The `def main():` main function
+* The `all_photos` function - gets all downloaded images from directories using the above scripts.
+* The `size_images_for_telegram` function - changes the size of the images to suitable for placement in the telegram.
+* The `create_parser` function - parser function.
+* The `def main():` main function.
 
 ### Project Goals
 
