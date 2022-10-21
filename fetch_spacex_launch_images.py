@@ -49,12 +49,11 @@ def main():
     path = "images_SpaceX"
     parser = create_parser()
     spacex_launch_id = parser.parse_args().id
+    print(bool(get_pictures_latest_launch(path, url)))
     if spacex_launch_id:
         get_pictures_by_launch_id(spacex_launch_id, path, url)
     else:
         get_pictures_latest_launch(path, url)
-        if get_pictures_latest_launch(path, url) is None:
-            print('There are no images from the last launch spacex on the server')
 
 
 if __name__ == "__main__":
