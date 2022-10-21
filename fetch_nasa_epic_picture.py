@@ -43,10 +43,10 @@ def get_epic_picture_urls(image_numbers, date, nasa_api_key_epic):
     return urls_epic_image_api
 
 
-def download_epic_pictures(urls_epic_image_list_api, path):
-    for images_number, urls_epic_image_list_api in enumerate(urls_epic_image_list_api, 1):
+def download_epic_pictures(urls_epic_image_api, path):
+    for images_number, urls_epic_image_api in enumerate(urls_epic_image_api, 1):
         filename = f'nasa_epic_{images_number}.png'
-        image = requests.get(urls_epic_image_list_api).content
+        image = requests.get(urls_epic_image_api).content
         with open(Path(f'{path}', f'{filename}'), 'wb') as file:
             file.write(image)
 
