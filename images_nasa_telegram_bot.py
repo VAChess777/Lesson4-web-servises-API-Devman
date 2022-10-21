@@ -1,12 +1,11 @@
 import os
 import random
 import time
+from pathlib import Path
 
-from PIL import Image
 import telegram
-
-
 from dotenv import load_dotenv
+from PIL import Image
 
 
 def get_all_pictures():
@@ -18,7 +17,7 @@ def get_all_pictures():
     all_images = []
     for directory in directories:
         for name in os.listdir(directory):
-            all_images.append(f'{directory}/{name}')
+            all_images.append(Path(f'{directory}', f'{name}'))
     random.shuffle(all_images)
     return all_images
 
@@ -83,9 +82,9 @@ def main():
             )
     else:
         while True:
-            for image_name in all_images:
+            for image in all_images:
                 time.sleep(args.time)
-                with open(f'{image_name}', 'rb') as photo:
+                with open(f'{image}', 'rb') as photo:
                     bot.send_photo(
                         chat_id=chat_id,
                         photo=photo
