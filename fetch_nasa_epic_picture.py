@@ -1,3 +1,4 @@
+import argparse
 import os
 from datetime import datetime
 from pathlib import Path
@@ -6,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 
 
-def nasa_epic_picture_number(nasa_api_key_epic, nasa_url):
+def get_epic_picture_numbers(nasa_api_key_epic, nasa_url):
     payload = {
         'api_key': nasa_api_key_epic
     }
@@ -21,16 +22,16 @@ def nasa_epic_picture_number(nasa_api_key_epic, nasa_url):
     return image_numbers[:]
 
 
-def nasa_epic_picture_urls(image_numbers, date, nasa_api_key_epic):
+def get_epic_picture_urls(image_numbers, date, nasa_api_key_epic):
     year, month, day = date.split('-')
-    urls_epic_image_list = []
+    urls_epic_image = []
     for image_number in image_numbers:
         picture_url = \
             f'https://api.nasa.gov/EPIC/archive/natural/' \
             f'{year}/{month}/{day}/png/{image_number}.png'
-        urls_epic_image_list.append(picture_url)
-    urls_epic_image_list_api = []
-    for url in urls_epic_image_list:
+        urls_epic_image.append(picture_url)
+    urls_epic_image_api = []
+    for url in urls_epic_image:
         payload = {
             'api_key': nasa_api_key_epic
         }
@@ -39,15 +40,15 @@ def nasa_epic_picture_urls(image_numbers, date, nasa_api_key_epic):
             params=payload
         )
         response.raise_for_status()
-        urls_epic_image_list_api.append(response.url)
-    return urls_epic_image_list_api
+        urls_epic_image_api.append(response.url)
+    return urls_epic_image_api
 
 
-def nasa_epic_picture_downloads(urls_epic_image_list_api, path):
+def download_epic_pictures(urls_epic_image_list_api, path):
     for images_number, urls_epic_image_list_api in enumerate(urls_epic_image_list_api, 1):
         filename = f'nasa_epic_{images_number}.png'
         image = requests.get(urls_epic_image_list_api).content
-        with open(f'{path}/{filename}', 'wb') as file:
+        with open(Path(f'{path}', f'{filename}'), 'wb') as file:
             file.write(image)
 
 
@@ -77,11 +78,12 @@ def main():
     Path('image_Earth_Nasa').mkdir(parents=True, exist_ok=True)
     path = 'image_Earth_Nasa'
     nasa_url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
-    image_numbers = nasa_epic_picture_number(nasa_api_key_epic, nasa_url)
-    urls_epic_image_list_api = nasa_epic_picture_urls(image_numbers, date, nasa_api_key_epic)
-    nasa_epic_picture_downloads(urls_epic_image_list_api, path)
-    if not nasa_epic_picture_urls(image_numbers, date, nasa_api_key_epic):
+    image_numbers = get_epic_picture_numbers(nasa_api_key_epic, nasa_url)
+    urls_epic_image_api = get_epic_picture_urls(image_numbers, date, nasa_api_key_epic)
+    download_epic_pictures(urls_epic_image_api, path)
+    if not urls_epic_image_api:
         print(f'There is no epic Earth image on the server for the date: {date}')
+
 
 if __name__ == '__main__':
 
