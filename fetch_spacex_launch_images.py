@@ -49,7 +49,6 @@ def main():
     path = "images_SpaceX"
     parser = create_parser()
     spacex_launch_id = parser.parse_args().id
-    print(bool(get_pictures_latest_launch(path, url)))
     if spacex_launch_id:
         get_pictures_by_launch_id(spacex_launch_id, path, url)
     else:
