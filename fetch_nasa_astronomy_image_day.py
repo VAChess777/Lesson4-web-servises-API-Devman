@@ -1,3 +1,4 @@
+import argparse
 import os
 from datetime import datetime
 from pathlib import Path
@@ -6,7 +7,7 @@ import requests
 from dotenv import load_dotenv
 
 
-def nasa_astronomy_picture_day(
+def get_astronomy_pictures_day(
         nasa_api_key, url, path,
         start_date, end_date):
     payload = {
@@ -19,15 +20,16 @@ def nasa_astronomy_picture_day(
         params=payload
     )
     response.raise_for_status()
-    url_picture_day = []
+    urls_pictures_day = []
     for hdurl in response.json():
         if hdurl.get('hdurl'):
-            url_picture_day.append(hdurl.get('hdurl'))
-    for images_number, url_picture_day in enumerate(url_picture_day, 1):
-        filename = f'nasa_apod_{images_number}.jpg'
-        image = requests.get(url_picture_day).content
-        with open(f'{path}/{filename}', 'wb') as file:
-            file.write(image)
+            urls_pictures_day.append(hdurl.get('hdurl'))
+    for images_numbers, urls_pictures_day in enumerate(urls_pictures_day, 1):
+        filename = f'nasa_apod_{images_numbers}.jpg'
+        image = requests.get(urls_pictures_day)
+        image.raise_for_status()
+        with open(Path(f'{path}', f'{filename}'), 'wb') as file:
+            file.write(image.content)
 
 
 def create_parser():
@@ -67,7 +69,7 @@ def main():
     parser = create_parser()
     start_date = parser.parse_args().start_date
     end_date = parser.parse_args().end_date
-    nasa_astronomy_picture_day(nasa_api_key, url, path, start_date, end_date)
+    get_astronomy_pictures_day(nasa_api_key, url, path, start_date, end_date)
 
 
 if __name__ == '__main__':
