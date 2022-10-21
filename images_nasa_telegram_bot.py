@@ -1,3 +1,4 @@
+import argparse
 import os
 import random
 import time
@@ -9,7 +10,7 @@ import telegram
 from dotenv import load_dotenv
 
 
-def all_photos():
+def get_all_pictures():
     directories = [
         'image_day_Nasa',
         'image_Earth_Nasa',
@@ -23,7 +24,7 @@ def all_photos():
     return all_images
 
 
-def size_images_for_telegram(all_images):
+def change_size_pictures_for_telegram(all_images):
     for image_name in all_images:
         image = Image.open(image_name)
         image.thumbnail((1280, 1280))
@@ -72,23 +73,24 @@ def main():
     chat_id = os.environ['TELEGRAM_CHAT_ID']
     bot = telegram.Bot(token=telegram_bot_token)
     parser = create_parser()
-    image_publish = parser.parse_args().image
-    time_delay = parser.parse_args().time
-    all_images = all_photos()
-    size_images_for_telegram(all_images)
-    if image_publish:
-        bot.send_photo(
-            chat_id=chat_id,
-            photo=open(image_publish, 'rb')
-        )
+    args = parser.parse_args()
+    all_images = get_all_pictures()
+    change_size_pictures_for_telegram(all_images)
+    if args.image:
+        with open(f'{args.image}', 'rb') as photo:
+            bot.send_photo(
+                chat_id=chat_id,
+                photo=photo
+            )
     else:
         while True:
             for image_name in all_images:
-                time.sleep(time_delay)
-                bot.send_photo(
-                    chat_id=chat_id,
-                    photo=open(f'{image_name}', 'rb')
-                )
+                time.sleep(args.time)
+                with open(f'{image_name}', 'rb') as photo:
+                    bot.send_photo(
+                        chat_id=chat_id,
+                        photo=photo
+                    )
 
 
 if __name__ == '__main__':
