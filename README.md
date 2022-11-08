@@ -8,9 +8,9 @@ Python3 should already be installed.
 
 ### Program installation:
 
-Download the code: [https://github.com/VAChess777/Lesson4-web-servises-API-Devman](https://github.com/VAChess777/Lesson4-web-servises-API-Devman), or clone the `git` repository to a local folder:
+Download the code: [https://github.com/VAChess777/Lesson4_web_servises_API_Devman](https://github.com/VAChess777/Lesson4_web_servises_API_Devman), or clone the `git` repository to a local folder:
 ```
-git clone https://github.com/VAChess777/Lesson4-web-servises-API-Devman.git
+git clone https://github.com/VAChess777/Lesson4_web_servises_API_Devman.git
 ```
 
 ### Installing dependencies:
